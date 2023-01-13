@@ -8,7 +8,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 })
 export class AppComponent {
   title = 'frontend-restaurant';
-
+  restaurants: any;
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
@@ -18,29 +18,13 @@ export class AppComponent {
   };
 
 
-
-
-
+  // ? GET the list of restaurants
     axios.get('http://localhost:1337/api/restaurants?populate=*', config).then(res => {
-        console.log(res);
+      // ? push data to restaurants array
+        this.restaurants = res.data.data;
+        console.log(this.restaurants);
     }).catch(err => {
-            console.log(err);
+            console.error(err);
     })
   }
 }
-
-////////////////////////////////////////////////////////////////////////////////////////////////
-// ! using HTTP
-  // const headers = new HttpHeaders({
-  //   'content-type': 'application/json',
-  //   'Authorization': `Bearer ${auth_token}`
-  // });
-
-  // const requestOptions = { headers: headers};
-    // this.http.get('http://localhost:1337/api/restaurants?populate=*', requestOptions).subscribe((res: any) => {
-    //   console.log(res);
-    // })
-
-    // this.http.get('http://localhost:1337/api/restaurants/1?populate=*', requestOptions).subscribe((res: any) => {
-    //   console.log(res);
-    // })
