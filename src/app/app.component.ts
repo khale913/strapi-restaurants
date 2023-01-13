@@ -9,6 +9,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 export class AppComponent {
   title = 'frontend-restaurant';
   restaurants: any;
+  error = null;
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
@@ -23,8 +24,12 @@ export class AppComponent {
       // ? push data to restaurants array
         this.restaurants = res.data.data;
         console.log(this.restaurants);
+        for(let c of this.restaurants) {
+          console.log(c.attributes.name);
+        }
     }).catch(err => {
             console.error(err);
+            this.error = err;
     })
   }
 }

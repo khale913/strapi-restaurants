@@ -1,3 +1,11 @@
 
+<div *ngIf="error">
+  {{error}}
+</div>
+
+<ul>
+  <li *ngFor="let restaurant of restaurants">{{restaurant.attributes['name']}}</li>
+</ul>
+
 
 <router-outlet></router-outlet>
